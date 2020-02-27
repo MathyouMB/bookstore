@@ -22,6 +22,7 @@ func init() {
 
 func main() {
 	r := mux.NewRouter()
+	r.HandleFunc("/books", GetBooksHandler).Methods("GET")
 	r.HandleFunc("/books/{id}", GetBookHandler).Methods("GET")
 	http.Handle("/", r)
 	fmt.Println("Server is running on port 8080")
