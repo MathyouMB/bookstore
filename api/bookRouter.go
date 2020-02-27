@@ -48,7 +48,14 @@ func GetBookHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(book)
-	//we need error handling if there is no real book
+
+	if (book.Book_id == 0){
+		json.NewEncoder(w).Encode("Error: Invalid book_id: "+id)
+		fmt.Println("Error: Invalid Book_id: "+id)
+	}else{
+		json.NewEncoder(w).Encode(book)
+	}
+
 }
