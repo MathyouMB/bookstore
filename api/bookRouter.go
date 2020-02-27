@@ -3,12 +3,14 @@ package main
 import (
 	"encoding/json"
 	"net/http"
+	"fmt"
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
 )
 
 func GetBookHandler(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
+	fmt.Println("Requested /books/"+ id)
 	rows, err := db.Query(`SELECT * FROM book WHERE book_id = $1`, id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusNotFound)

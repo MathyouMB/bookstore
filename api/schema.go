@@ -1,8 +1,6 @@
 
 package main
 
-
-
 type Book struct {
 	Book_id       int      		`json:"id"`
 	Book_title    string   		`json:"title"`
