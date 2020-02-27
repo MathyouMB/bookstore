@@ -28,6 +28,7 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 		books = append(books, book)
 	}
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	json.NewEncoder(w).Encode(books)
 }
 
@@ -50,6 +51,7 @@ func getBook(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	if (book.Book_id == 0){
 		json.NewEncoder(w).Encode("Error: Invalid book_id: "+id)
@@ -75,6 +77,7 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 	}
 	
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode("Book Succesfully Created")
 }
