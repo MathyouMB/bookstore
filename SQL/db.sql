@@ -1,12 +1,11 @@
-create table book
-	(book_id			varchar(8), 
+create table books
+	(book_id			SERIAL PRIMARY KEY, 
 	 book_title			varchar(50),
 	 page_num			numeric(5,0),
-	 book_price 		decimal(7,2),
-	 primary key (book_id),
-	);
+	 book_price 		decimal(7,2)
+	)
 
-insert into book values ('1','Book', '100', '2.99');
+insert into books values ('1','Book', '100', '2.99');
 /*
 
 Book needs

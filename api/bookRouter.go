@@ -9,9 +9,9 @@ import (
 )
 
 
-func GetBooksHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Requested /books")
-	rows, err := db.Query("SELECT * FROM book")
+func getBooks(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("GET /books")
+	rows, err := db.Query("SELECT * FROM books")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
@@ -32,10 +32,10 @@ func GetBooksHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 
-func GetBookHandler(w http.ResponseWriter, r *http.Request) {
+func getBook(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	fmt.Println("Requested /books/"+ id)
-	rows, err := db.Query(`SELECT * FROM book WHERE book_id = $1`, id)
+	fmt.Println("GET /books/"+ id)
+	rows, err := db.Query(`SELECT * FROM books WHERE book_id = $1`, id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusNotFound)
 	}
@@ -58,4 +58,23 @@ func GetBookHandler(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(book)
 	}
 
+}
+
+func createBook(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("POST /books")
+	var book Book
+	if err := json.NewDecoder(r.Body).Decode(&book); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	
+	_, err := db.Exec(`INSERT INTO books (book_title, page_num, book_price) VALUES ($1, $2, $3)`, book.Book_title, book.Page_num, book.Book_price)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode("Book Succesfully Created")
 }
