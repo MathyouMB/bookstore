@@ -19,7 +19,7 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 	var books []Book
 	for rows.Next() {
 		var book Book
-		err := rows.Scan(&book.Book_id, &book.Book_title, &book.Page_num, &book.Book_price)
+		err := rows.Scan(&book.ISBN, &book.Book_title, &book.Page_num, &book.Book_price)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -36,14 +36,14 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 func getBook(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
 	fmt.Println("GET /books/"+ id)
-	rows, err := db.Query(`SELECT * FROM books WHERE book_id = $1`, id)
+	rows, err := db.Query(`SELECT * FROM books WHERE isbn = $1`, id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusNotFound)
 	}
 	var book Book
 	defer rows.Close()
 	for rows.Next() {
-		err := rows.Scan(&book.Book_id, &book.Book_title, &book.Page_num, &book.Book_price)
+		err := rows.Scan(&book.ISBN, &book.Book_title, &book.Page_num, &book.Book_price)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -53,9 +53,9 @@ func getBook(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-	if (book.Book_id == 0){
-		json.NewEncoder(w).Encode("Error: Invalid book_id: "+id)
-		fmt.Println("Error: Invalid Book_id: "+id)
+	if (len(book.ISBN) <= 0){
+		json.NewEncoder(w).Encode("Error: Invalid ISBN: "+id)
+		fmt.Println("Error: Invalid ISBN: "+id)
 	}else{
 		json.NewEncoder(w).Encode(book)
 	}
@@ -70,7 +70,7 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	
-	_, err := db.Exec(`INSERT INTO books (book_title, page_num, book_price) VALUES ($1, $2, $3)`, book.Book_title, book.Page_num, book.Book_price)
+	_, err := db.Exec(`INSERT INTO books (isbn, book_title, page_num, book_price) VALUES ($1, $2, $3, $4)`, book.ISBN, book.Book_title, book.Page_num, book.Book_price)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
