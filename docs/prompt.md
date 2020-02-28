@@ -110,3 +110,6 @@ The owners should have access to reports that show ...
 The application should also be able to automatically place orders for new books if the remaining quantity is less than a given threshold (e.g., 10 books). This is done by sending an email to the publisher of the limited books to order a number of books equal to how many books
 were sold in the previous month (you do not have to implement the email sending component).
 
+
+Get quantity of that book sold in previous month
+
