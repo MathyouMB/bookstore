@@ -9,6 +9,8 @@ services:
       - "80:80"
     depends_on:
       - api
+    networks:
+      - bookstore
 
   api:
     build: ./api
@@ -18,13 +20,38 @@ services:
       - "8080:8080"
     depends_on:
       - db
+    networks:
+      - bookstore
   db:
     image: postgres
     environment: 
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: 1234
-        POSTGRES_DB: 3005BookStore
+        - POSTGRES_USER=${DB_USER}  
+        - POSTGRES_PASSWORD=${DB_PASSWORD}
+        - POSTGRES_DB=${DB_NAME}
+        - DATABASE_HOST=${DB_HOST} 
     volumes:
-        - ./sql/ddl.sql:/docker-entrypoint-initdb.d/sql/ddl.sql
+        - database_postgres:/var/lib/postgresql/data
+        - ./ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
     ports:
         - "5433:5432"
+    networks:
+        - bookstore
+        
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+        - db
+    ports:
+        - "5555:80"
+    environment:
+        PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+        PGADMIN_DEFAULT_PASSWORD: 1234
+    restart: unless-stopped
+
+volumes:
+    api:
+    database_postgres:
+
+networks:
+    bookstore:
+        driver: bridge

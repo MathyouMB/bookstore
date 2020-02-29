@@ -15,11 +15,13 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
+
 	defer rows.Close()
 	var books []Book
 	for rows.Next() {
 		var book Book
-		err := rows.Scan(&book.ISBN, &book.Book_title, &book.Page_num, &book.Book_price)
+
+		err := rows.Scan(&book.ISBN, &book.Book_title, &book.Page_num, &book.Book_price, &book.Inventory_count, &book.Restock_threshold, &book.Publisher_sale_percentage, &book.Publisher_id)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -27,6 +29,7 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 
 		books = append(books, book)
 	}
+	
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	json.NewEncoder(w).Encode(books)
@@ -43,7 +46,7 @@ func getBook(w http.ResponseWriter, r *http.Request) {
 	var book Book
 	defer rows.Close()
 	for rows.Next() {
-		err := rows.Scan(&book.ISBN, &book.Book_title, &book.Page_num, &book.Book_price)
+		err := rows.Scan(&book.ISBN, &book.Book_title, &book.Page_num, &book.Book_price, &book.Inventory_count, &book.Restock_threshold, &book.Publisher_sale_percentage, &book.Publisher_id)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return

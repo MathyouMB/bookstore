@@ -7,7 +7,7 @@ function App() {
   let[data, setData] = useState([]);
 
   const getBooks = async () => {
-    let response = await fetch(`http://localhost:8080/books`);
+    let response = await fetch(`http://localhost:8080/test`);
     let data = await response.json()
     setData(data);
     setLoading(false);
@@ -23,12 +23,12 @@ function App() {
     <div className="App">
       {
         loading ? "Loading..."
-
         :
-
-        data.map( item => (
+        /*data.map( item => (
             <div>{item.Book_title}</div>
         ))
+        */
+       data
       }
     </div>
   );

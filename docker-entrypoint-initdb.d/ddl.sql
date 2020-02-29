@@ -6,13 +6,13 @@ create table publishers
 
 create table books
 	(
-	 isbn						varchar(13),
-	 book_title					varchar(50),
-	 page_num					numeric(5,0),
-	 book_price 				decimal(7,2),
-	 inventory_count			numeric(5,0),
-	 restock_threshold			numeric(5,0),
-	 publisher_sale_percentage	numeric(3,2),
+	 isbn						varchar(13) NOT NULL,
+	 book_title					varchar(50) NOT NULL,
+	 page_num					numeric(5,0) NOT NULL,
+	 book_price 				decimal(7,2) NOT NULL,
+	 inventory_count			numeric(5,0) NOT NULL,
+	 restock_threshold			numeric(5,0) NOT NULL,
+	 publisher_sale_percentage	numeric(3,2) NOT NULL,
 	 publisher_id				int NOT NULL,
 	 primary key (isbn),
 	 foreign key (publisher_id) references publishers (publisher_id)
@@ -63,7 +63,7 @@ create table store_orders
 	(
 	 store_order_id				SERIAL PRIMARY KEY, 
 	 book_quantity				numeric(5,0),
-	 email_text					varchar(1000)
+	 email_text					varchar(1000),
 	 isbn					varchar(13) NOT NULL,
 	 publisher_id				int NOT NULL, 
 	 foreign key (isbn) references books (isbn),
@@ -116,7 +116,5 @@ create table checkout_orders
 
 /* Create Publishers because Books reference Publishers */
 
-insert into publishers (publisher_name) values ('test publisher')
-insert into books (isbn,book_title,page_num,book_price,publisher_id) values ('1','Book', '100', '2.99','1');
-
-
+insert into publishers (publisher_name) values ('test publisher');
+insert into books (isbn, book_title, page_num, book_price, inventory_count, restock_threshold, publisher_sale_percentage, publisher_id) values ('1','Book', '100', '2.99','25','10','0.05','1');

@@ -2,6 +2,13 @@
 
 run server go run *.go
 
+
+Important order to ensure application is up to date
+docker-compose down
+docker-compose build
+docker-compose up --force-recreate
+
+
 /books
 
 {
