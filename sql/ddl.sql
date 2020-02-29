@@ -114,6 +114,9 @@ create table checkout_orders
 	 foreign key (user_order_id) references user_orders (user_order_id)
 	);
 
-insert into books values ('1','Book', '100', '2.99');
+/* Create Publishers because Books reference Publishers */
+
+insert into publishers (publisher_name) values ('test publisher')
+insert into books (isbn,book_title,page_num,book_price,publisher_id) values ('1','Book', '100', '2.99','1');
 
 

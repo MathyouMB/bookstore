@@ -16,18 +16,15 @@ services:
  #     - "./api:/app"
     ports:
       - "8080:8080"
-  #  depends_on:
-  #    - db
-
-#  db:
-#    image: mysql:5.7
-#    restart: always
-#    environment:
-#      MYSQL_ROOT_PASSWORD: example
-#      MYSQL_DATABASE: users
-#      MYSQL_USER: test
-#      MYSQL_PASSWORD: test1234
-#    ports:
-#      - "3307:3306"
-#    volumes:
-#      - ./docker/data/db:/var/lib/mysql
+    depends_on:
+      - db
+  db:
+    image: postgres
+    environment: 
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: 1234
+        POSTGRES_DB: 3005BookStore
+    volumes:
+        - ./sql/ddl.sql:/docker-entrypoint-initdb.d/sql/ddl.sql
+    ports:
+        - "5433:5432"
