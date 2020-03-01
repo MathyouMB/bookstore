@@ -1,4 +1,4 @@
-version: '3.0'
+version: '3.2'
 
 services:
   client:
@@ -20,20 +20,22 @@ services:
       - "8080:8080"
     depends_on:
       - db
+    links:
+      - db
     networks:
       - bookstore
   db:
     image: postgres
+#    hostname: postgres
     environment: 
-        - POSTGRES_USER=${DB_USER}  
-        - POSTGRES_PASSWORD=${DB_PASSWORD}
-        - POSTGRES_DB=${DB_NAME}
-        - DATABASE_HOST=${DB_HOST} 
-    volumes:
-        - database_postgres:/var/lib/postgresql/data
-        - ./ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
-    ports:
-        - "5433:5432"
+        POSTGRES_DB: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: 1234
+#    volumes:
+#        - database_postgres:/var/lib/postgresql/data
+#        - ./ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+#    ports:
+#        - "5433:5432"
     networks:
         - bookstore
         
@@ -43,10 +45,15 @@ services:
         - db
     ports:
         - "5555:80"
+    links:
+        - db
+#        - "db:database"
     environment:
         PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
         PGADMIN_DEFAULT_PASSWORD: 1234
     restart: unless-stopped
+    networks:
+      - bookstore
 
 volumes:
     api:
