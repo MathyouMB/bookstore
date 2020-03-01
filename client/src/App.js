@@ -28,7 +28,7 @@ function App() {
           <br></br>
           <br></br>
           <Route path="/books" component={() => <BooksPage/>} />
-          <Route path="/book" component={() => <BookPage/>} />
+          <Route path="/book/:isbn" component={() => <BookPage/>} />
        </Router>  
     </div>
   );

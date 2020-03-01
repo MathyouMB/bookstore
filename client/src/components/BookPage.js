@@ -9,9 +9,11 @@ function BookPage() {
   let[suggestions,setSuggestions] = useState([]);
 
   const getBook = async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    let idParam = urlParams.get('ID');
-    let response = await fetch(`http://localhost:8080/books/`+idParam);
+    //const urlParams = new URLSearchParams(window.location.search);
+    //let idParam = urlParams.get('ID');
+    let url = window.location.href;
+    let id = url.substring(url.lastIndexOf('/') + 1);
+    let response = await fetch(`http://localhost:8080/books/`+id);
     let data = await response.json()
     
     setBook(data);
@@ -71,7 +73,7 @@ function BookPage() {
                 </div>
                 <div className="book-details-grid-row">
                     <div className="book-details-grid-row-cell">Publisher</div>
-                    <div className="book-details-grid-row-cell">...</div>
+                    <div className="book-details-grid-row-cell">{book.Publisher.Publisher_name}</div>
                 </div>
                 <div className="book-details-grid-row">
                     <div className="book-details-grid-row-cell">Authors</div>

@@ -63,6 +63,23 @@ func getBook(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
+
+		book_publisher, err := db.Query(`SELECT * FROM publishers WHERE publisher_id = $1`, book.Publisher_id)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+		defer book_publisher.Close()
+
+		for book_publisher.Next() {
+			var publisher Publisher
+			err := book_publisher.Scan(&publisher.Publisher_id, &publisher.Publisher_name)
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+			book.Publisher = publisher
+		}
+
 	}
 
 	w.Header().Set("Content-Type", "application/json")

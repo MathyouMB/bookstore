@@ -20,7 +20,7 @@ function BookCover(props) {
 function BookContainer(props) {
     return (
       <div className="book-container">
-          <Link to={"book?ID="+props.book.ISBN}><BookCover title={props.book.Book_title}/></Link>
+          <Link to={"/book/"+props.book.ISBN}><BookCover title={props.book.Book_title}/></Link>
           <div className="book-title"><b>{props.book.Book_title}</b></div>
           <div className="book-genre">{props.book.Book_genre}</div>
           <div className="book-price"><b>${props.book.Book_price}</b></div>
