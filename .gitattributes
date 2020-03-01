@@ -1,3 +1,4 @@
 *.sql linguist-language=Go
 *dockerfile linguist-language=Dockerfile
 *.scss linguist-language=Sass
+*.sh linguist-language=Shell
