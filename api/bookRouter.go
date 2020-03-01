@@ -11,6 +11,17 @@ import (
 
 func getBooks(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("GET /books")
+	keys, ok := r.URL.Query()["genre"]
+    
+    if !ok || len(keys[0]) < 1 {
+        fmt.Println("Url Param 'genre' is missing")
+	}
+
+	fmt.Println(keys)
+	fmt.Println(keys[0])
+	
+	//localhost:8080/books?genre=test
+
 	rows, err := db.Query("SELECT * FROM books")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
