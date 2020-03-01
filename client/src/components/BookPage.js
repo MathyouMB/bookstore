@@ -37,10 +37,10 @@ function BookPage() {
   });
 
   useEffect(() => {
-        if(!loading){
-            getSuggestions();
-        }
-    }, [loading])
+    if(!loading){
+        getSuggestions();
+    }
+  }, [loading])
 
 
   return (
@@ -77,6 +77,10 @@ function BookPage() {
                     <div className="book-details-grid-row-cell">Authors</div>
                     <div className="book-details-grid-row-cell">...</div>
                 </div>
+                <br></br>
+                <br></br>  
+                <br></br>
+                <br></br>
                 <br></br>
                 <br></br>  
                 {
