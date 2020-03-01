@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Book from './Book.js';
 
 function Books() {
   let[loading, setLoading] = useState(true);
@@ -18,12 +19,12 @@ function Books() {
   });
 
   return (
-    <div className="App">
+    <div className="books-page">
       {
         loading ? "Loading..."
         :
         data.map( item => (
-            <div>{item.Book_title}</div>
+            <Book book={item}/>
         ))
       
       }

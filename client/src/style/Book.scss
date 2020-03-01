@@ -1,0 +1,74 @@
+.book-container{
+    display:flex;
+    flex-direction: column;
+    width:20em; 
+    margin: 1em;
+    text-align: center; 
+    justify-content: center;
+    transition: all 0.15s;
+    margin-bottom: 5em;
+}
+
+.books-page{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.book-order-button{
+    display:inline-block;
+   // padding:1em 1.5em;
+    padding:0.7em;
+    border:0.13em solid #5e5c5c;
+    box-sizing: border-box;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-family:'Roboto',sans-serif;
+    font-weight:400;
+    color:#5e5c5c;;
+    text-align:center;
+    transition: all 0.15s;
+    width: 9em;
+    margin:auto;
+    margin-top: 1.3em;
+
+}
+
+.book-cover{
+    width: 10em;
+    height: 14em;
+    border:0.13em solid #807d7d;
+    margin:auto;
+    margin-bottom: 1.3em;
+    display:flex;
+    flex-direction: column;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.book-cover:hover{
+    transition: all 0.3s;
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+}
+
+.book-price{
+    margin-top:0.5em;   
+    color:rgb(243, 167, 26);
+    font-weight: 1.3em;
+}
+
+.book-cover-title{
+    margin:auto;
+    color:white;
+    font-family: "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif; 
+}
+.book-order-button:hover{
+    color:rgb(199, 199, 199);
+    border-color:rgb(199, 199, 199);
+}
+
+.book-order-button:active{
+    color:rgb(199, 199, 199);
+    border-color:rgb(199, 199, 199);
+}
