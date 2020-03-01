@@ -12,6 +12,7 @@ create table books
 	 book_price 				decimal(7,2) NOT NULL,
 	 inventory_count			numeric(5,0) NOT NULL,
 	 restock_threshold			numeric(5,0) NOT NULL,
+	 book_genre					varchar(30) NOT NULL,
 	 publisher_sale_percentage	numeric(3,2) NOT NULL,
 	 publisher_id				int NOT NULL,
 	 primary key (isbn),
@@ -117,4 +118,4 @@ create table checkout_orders
 /* Create Publishers because Books reference Publishers */
 
 insert into publishers (publisher_name) values ('test publisher');
-insert into books (isbn, book_title, page_num, book_price, inventory_count, restock_threshold, publisher_sale_percentage, publisher_id) values ('1','Book', '100', '2.99','25','10','0.05','1');
+insert into books (isbn, book_title, page_num, book_price, inventory_count, restock_threshold, book_genre, publisher_sale_percentage, publisher_id) values ('1','Book', '100', '2.99','25','10','genre test','0.05','1');
