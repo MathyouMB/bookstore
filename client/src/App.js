@@ -1,34 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import './App.scss';
+import { BrowserRouter as Router, Route, Redirect, Switch, Link } from "react-router-dom";
+import BooksPage from './components/BooksPage'
+import Header from './components/Header';
+import './style/App.scss';
 
 
 function App() {
-  let[loading, setLoading] = useState(true);
-  let[data, setData] = useState([]);
+  //login
+  //signup
+  //cart
+  //orders
+  //order
+  //book
+  //books
 
-  const getBooks = async () => {
-    let response = await fetch(`http://localhost:8080/books`);
-    let data = await response.json()
-    setData(data);
-    setLoading(false);
-  }
+  //report pages tbd
 
-  useEffect(() => {
-    if(loading){
-        getBooks();
-    }
-  });
 
   return (
     <div className="App">
-      {
-        loading ? "Loading..."
-        :
-        data.map( item => (
-            <div>{item.Book_title}</div>
-        ))
-      
-      }
+      <Router>
+          <Header/>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Route path="/home" component={() => <BooksPage/>} />
+       </Router>  
     </div>
   );
 }
