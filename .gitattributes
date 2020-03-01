@@ -2,3 +2,4 @@
 *dockerfile linguist-language=Dockerfile
 *.scss linguist-language=Sass
 *.sh linguist-language=Shell
+*.html linguist-language=Shell
