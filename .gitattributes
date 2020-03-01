@@ -3,3 +3,4 @@
 *.scss linguist-language=Sass
 *.sh linguist-language=Shell
 *.html linguist-language=Shell
+*docker-compsoe.yml linguist-language=Dockerfile

@@ -12,6 +12,14 @@
     
 }
 
+.books-suggestions{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    width:60%
+}
+
 .books-page{
     display:flex;
     flex-wrap: wrap;
