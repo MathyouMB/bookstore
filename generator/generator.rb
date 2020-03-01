@@ -1,56 +1,26 @@
 require 'faker'
 
-p(Faker::Name.name)      #=> "Christophe Bartell"
+book_names = File.new("./data/bookNames.txt", "w")
 
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"
+50.times do
+    book_names.puts(Faker::Book.title)
+end
 
-p(Faker::Name.name)      #=> "Christophe Bartell"
+book_names.close
 
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"
-p(Faker::Name.name)      #=> "Christophe Bartell"
+book_publishers = File.new("./data/bookPublishers.txt", "w")
 
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
+50.times do
+    book_publishers.puts(Faker::Book.publisher)
+end
 
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
+book_publishers.close
 
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
 
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
+book_genres = File.new("./data/bookGenres.txt", "w")
 
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
+50.times do
+    book_genres.puts(Faker::Book.genre)
+end
 
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"p(Faker::Name.name)      #=> "Christophe Bartell"
-
-Faker::Internet.email #=> "kirsten.greenholt@corkeryfisher.info"
+book_genres.close

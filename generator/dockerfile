@@ -1,7 +1,0 @@
-FROM python:3
-
-ADD generator.py /
-
-RUN pip install pystrich
-
-CMD [ "python", "./generator.py" ]
