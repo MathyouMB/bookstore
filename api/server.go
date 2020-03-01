@@ -10,6 +10,14 @@ import (
 	_ "github.com/lib/pq"
 )
 
+const (
+	hostname = "db" //localhost for local dev
+	host_port = 5432
+	username = "postgres"
+	password = "1234"
+	database_name = "3005BookStore"
+)
+
 var db *sql.DB
 func testRequest(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("GET /test")
@@ -23,7 +31,6 @@ func testRequest(w http.ResponseWriter, r *http.Request) {
 	var books []Book
 	for rows.Next() {
 		var book Book
-
 		err := rows.Scan(&book.ISBN, &book.Book_title, &book.Page_num, &book.Book_price, &book.Inventory_count, &book.Restock_threshold, &book.Publisher_sale_percentage, &book.Publisher_id)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -33,8 +40,6 @@ func testRequest(w http.ResponseWriter, r *http.Request) {
 		books = append(books, book)
 	}
 	
-
-
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	json.NewEncoder(w).Encode(books[0].Book_title)
@@ -42,7 +47,8 @@ func testRequest(w http.ResponseWriter, r *http.Request) {
 }
 func init() {
 	var err error
-	db, err = sql.Open("postgres", "user=postgres port=5432 password=1234 dbname=3005BookStore sslmode=disable")
+	pg_con_string := fmt.Sprintf("port=%d host=%s user=%s "+ "password=%s dbname=%s sslmode=disable", host_port, hostname, username, password, database_name)
+	db, err = sql.Open("postgres", pg_con_string)
 	if err != nil {
 		log.Fatal(err)
 	}
