@@ -3,16 +3,28 @@
     flex-direction: column;
     width:20em; 
     margin: 1em;
+    margin:auto;
     text-align: center; 
     justify-content: center;
     transition: all 0.15s;
-    margin-bottom: 5em;
+    margin-bottom: 3em;
+    margin-top: 2em;
+    
 }
 
 .books-page{
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.books-page-single{
+    display:flex;
+    width:100%;
+    justify-content: center;
+    flex-direction: column;
+    margin:auto;
+    
 }
 
 
@@ -71,4 +83,41 @@
 .book-order-button:active{
     color:rgb(199, 199, 199);
     border-color:rgb(199, 199, 199);
+}
+
+.book-details{
+    display:flex;
+    width:80%;
+    margin:auto;
+    justify-content: center;
+}
+
+.book-details-grid{
+    //display: grid;
+    //grid-row: 1;
+}
+
+.book-details-grid-row{
+    
+    display:flex;
+    margin:auto;
+    justify-content: center;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.book-details-grid-row-cell{
+    width:10em;
+    text-align: left;
+}
+
+.book-details-container{
+    width:50%;
+    margin:auto;
+}
+
+.book-details-heading{
+    margin:auto;
+    text-align: center;
+
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBook} from '@fortawesome/free-solid-svg-icons'
+import { Link } from "react-router-dom";
 import '../style/Book.scss';
 
 function BookCover(props) {
@@ -19,11 +20,11 @@ function BookCover(props) {
 function BookContainer(props) {
     return (
       <div className="book-container">
-          <BookCover title={props.book.Book_title}/>
+          <Link to={"book?ID="+props.book.ISBN}><BookCover title={props.book.Book_title}/></Link>
           <div className="book-title"><b>{props.book.Book_title}</b></div>
           <div className="book-genre">{props.book.Book_genre}</div>
           <div className="book-price"><b>${props.book.Book_price}</b></div>
-          <input type="button" class="book-order-button" value="Add to Cart"></input>
+          <input type="button" className="book-order-button" value="Add to Cart"></input>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 Design and implement an application for an online bookstore (Look Inna Book). 
 
-This application lets users browse a collection of books that are available in the bookstore. 
+This application lets users browse a collection of books that are available in the bookstore.  [done]
 
     Models
         Book
