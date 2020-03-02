@@ -77,7 +77,13 @@ function BookPage() {
                 </div>
                 <div className="book-details-grid-row">
                     <div className="book-details-grid-row-cell">Authors</div>
-                    <div className="book-details-grid-row-cell">...</div>
+                    <div className="book-details-grid-row-cell">
+                        {
+                            book.Authors.map( author => (
+                               <div>• {author.First_name} {author.Last_name}</div>
+                            ))
+                        }  
+                    </div>
                 </div>
                 <br></br>
                 <br></br>  
@@ -103,13 +109,13 @@ function BookPage() {
         
         <div className="books-suggestions">
         <>
-        {  
-            gotSuggestions ? ""
-            :       
-                suggestions.filter(suggestion => suggestion.ISBN != book.ISBN).map( item => (
-                    <Book book={item}/>
-                ))     
-        }
+            {  
+                gotSuggestions ? ""
+                :       
+                    suggestions.filter(suggestion => suggestion.ISBN != book.ISBN).map( item => (
+                        <Book book={item}/>
+                    ))     
+            }
         </>
         </div>
     </div>
