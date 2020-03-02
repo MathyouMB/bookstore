@@ -7,7 +7,7 @@ function Header() {
   const bookIcon = <FontAwesomeIcon icon={faBook} />
   return (
     <div className="header">
-        <Link to={"books"}><div className="header-title-text">{bookIcon}</div></Link>
+        <Link to={"/books"}><div className="header-title-text">{bookIcon}</div></Link>
     </div>
   );
 }
