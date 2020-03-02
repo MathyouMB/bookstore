@@ -52,3 +52,23 @@ for x in range(0, 50):
     ddl.write("insert into book_authors (isbn, author_id) values ('"+isbn[x]+"','"+str(randrange(1,10))+"');\n")
     ddl.write("insert into book_authors (isbn, author_id) values ('"+isbn[x]+"','"+str(randrange(11,20))+"');\n")
 
+bookISBN.close()
+
+usernames = open("./data/usernames.txt", "r")
+firstNames = open("./data/firstNames.txt", "r")
+lastNames = open("./data/lastNames.txt", "r")
+addresses = open("./data/addresses.txt", "r")
+creditCard = open("./data/creditCardNums.txt", "r")
+cvs = open("./data/cvs.txt", "r")
+passwords = open("./data/passwords.txt", "r")
+
+user = usernames.read().splitlines()
+first = firstNames.read().splitlines()
+last = lastNames.read().splitlines()
+a = addresses.read().splitlines()
+c = creditCard.read().splitlines()
+cv = cvs.read().splitlines()
+p = passwords.read().splitlines()
+
+for x in range(0, 20):
+    ddl.write("insert into users (username, first_name, last_name, billing_address, credit_card_num, credit_card_cvs, email_address, password, role) values ('"+user[x]+str(randrange(10,99))+"','"+first[x]+"','"+last[x]+"','"+a[x]+"','"+c[x]+"','"+cv[x]+"','"+first[x]+last[x]+"@email.com','"+p[x]+"','default');\n")
