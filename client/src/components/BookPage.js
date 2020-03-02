@@ -78,10 +78,11 @@ function BookPage() {
                 <div className="book-details-grid-row">
                     <div className="book-details-grid-row-cell">Authors</div>
                     <div className="book-details-grid-row-cell">
-                        {
+                        
+                        {   
                             book.Authors.map( author => (
-                               <div>• {author.First_name} {author.Last_name}</div>
-                            ))
+                            <div>• {author.First_name} {author.Last_name}</div>
+                            ))        
                         }  
                     </div>
                 </div>

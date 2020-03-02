@@ -48,7 +48,7 @@ artistNames.close()
 
 bookISBN = open("./data/bookISBN.txt", "r")
 isbn = bookISBN.read().splitlines()
-for x in range(0, 30):
+for x in range(0, 50):
     ddl.write("insert into book_authors (isbn, author_id) values ('"+isbn[x]+"','"+str(randrange(1,10))+"');\n")
     ddl.write("insert into book_authors (isbn, author_id) values ('"+isbn[x]+"','"+str(randrange(11,20))+"');\n")
 
