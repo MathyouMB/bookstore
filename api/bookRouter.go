@@ -4,10 +4,12 @@ import (
 	"encoding/json"
 	"net/http"
 	"fmt"
+	"sync"
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
 )
 
+var wg sync.WaitGroup
 
 func getBooks(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("GET /books")
@@ -38,6 +40,12 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
+		wg.Add(2)
+
+		go queryPublisher(w, book.Publisher_id, &book.Publisher)
+		go queryAuthors(w, book.ISBN, &book.Authors)
+
+		wg.Wait()
 
 		books = append(books, book)
 	}
@@ -63,24 +71,14 @@ func getBook(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		
-		book_publisher, err := db.Query(`SELECT * FROM publishers WHERE publisher_id = $1`, book.Publisher_id)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-		defer book_publisher.Close()
-
-		for book_publisher.Next() {
-			var publisher Publisher
-			err := book_publisher.Scan(&publisher.Publisher_id, &publisher.Publisher_name)
-			if err != nil {
-				http.Error(w, err.Error(), http.StatusInternalServerError)
-				return
-			}
-			book.Publisher = publisher
-		}
-
 	}
+
+	wg.Add(2)
+
+	go queryPublisher(w, book.Publisher_id, &book.Publisher)
+	go queryAuthors(w, book.ISBN, &book.Authors)
+
+	wg.Wait()
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -112,4 +110,44 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode("Book Succesfully Created")
+}
+
+func queryPublisher(w http.ResponseWriter, id int, p *Publisher){
+	
+	defer wg.Done()
+	book_publisher, err := db.Query(`SELECT * FROM publishers WHERE publisher_id = $1`, id)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	defer book_publisher.Close()
+
+	for book_publisher.Next() {
+		var publisher Publisher
+		err := book_publisher.Scan(&publisher.Publisher_id, &publisher.Publisher_name)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		*p = publisher
+	}
+}
+
+func queryAuthors(w http.ResponseWriter, isbn string, a *[]Author){
+	
+	defer wg.Done()
+	book_authors, err := db.Query(`SELECT author_id, first_name, last_name, artist_name, authors.publisher_id FROM (authors join book_authors using(author_id)) left outer join books using (isbn) WHERE isbn = $1`, isbn)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	defer book_authors.Close()
+
+	for book_authors.Next() {
+		var author Author
+		err := book_authors.Scan(&author.Author_id, &author.First_name, &author.Last_name, &author.Artist_name, &author.Publisher_id)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		*a = append(*a, author)
+	}
 }
