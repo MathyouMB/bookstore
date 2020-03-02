@@ -25,7 +25,7 @@ function BookPage() {
 
     let response = await fetch(`http://localhost:8080/books?genre=`+book.Book_genre);
     let data = await response.json()
-    console.log(data);  
+
     setSuggestions(data);
     
     if(data.length >1){
