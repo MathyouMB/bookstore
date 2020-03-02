@@ -1,0 +1,10 @@
+insert into publishers (publisher_name) values ('Book Works');
+insert into publishers (publisher_name) values ('Butterworth-Heinemann');
+insert into publishers (publisher_name) values ('McGraw Hill Financial');
+insert into publishers (publisher_name) values ('HarperCollins');
+insert into publishers (publisher_name) values ('Brill Publishers');
+insert into publishers (publisher_name) values ('Flame Tree Publishing');
+insert into publishers (publisher_name) values ('Book Works');
+insert into publishers (publisher_name) values ('Elloras Cave');
+insert into publishers (publisher_name) values ('D. Appleton & Company');
+insert into publishers (publisher_name) values ('Manchester University Press');

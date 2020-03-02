@@ -24,3 +24,29 @@ book_genres = File.new("./data/bookGenres.txt", "w")
 end
 
 book_genres.close
+
+first_names = File.new("./data/firstNames.txt", "w")
+
+20.times do
+    first_names.puts(Faker::Name.first_name)
+end
+
+first_names.close
+
+last_names = File.new("./data/lastNames.txt", "w")
+
+20.times do
+    last_names.puts(Faker::Name.last_name)
+end
+
+last_names.close
+
+
+artist_names = File.new("./data/artistNames.txt", "w")
+
+20.times do
+    artist_names.puts(Faker::Artist.name)
+end
+
+artist_names.close
+

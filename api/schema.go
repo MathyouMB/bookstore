@@ -6,6 +6,13 @@ type Publisher struct {
 	Publisher_name    					string     `json:"Publisher_name"`
 }
 
+type Author struct {
+	Author_id       	  				int        		`json:"Author_id"`
+	First_name    						string     		`json:"First_name"`
+	Last_name    						string     		`json:"Last_name"`
+	Artist_name    						string     		`json:"Artist_name"`
+	Publisher_id   						int     		`json:"Publisher_id"`
+}
 type Book struct {
 	ISBN       	  						string        `json:"ISBN"`
 	Book_title    						string   		`json:"Book_title"`
@@ -17,6 +24,8 @@ type Book struct {
 	Publisher_sale_percentage    		float32     	`json:"Publisher_sale_percentage"`
 	Publisher_id   						int     		`json:"Publisher_id"`
 	Publisher  							Publisher 		`json:"Publisher"`
+	Authors  							[]Author 		`json:"Authors"`
+
 }
 
 //if this randomly crashes later its probably cus I added publisher and docker didnt build right

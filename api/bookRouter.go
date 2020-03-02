@@ -63,7 +63,7 @@ func getBook(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-
+		
 		book_publisher, err := db.Query(`SELECT * FROM publishers WHERE publisher_id = $1`, book.Publisher_id)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
