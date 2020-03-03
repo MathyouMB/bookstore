@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch, Link } from "react-ro
 import BooksPage from './components/BooksPage'
 import BookPage from './components/BookPage'
 import LoginPage from './components/LoginPage'
+import CartPage from './components/CartPage'
 import Header from './components/Header';
 import './style/App.scss';
 
@@ -20,7 +21,6 @@ function App() {
 
   let [user, setUser] = useState();
 
-
   return (
     <div className="App">
       <Router>
@@ -30,8 +30,9 @@ function App() {
           <br></br>
           <br></br>
           <br></br>
-          <Route path="/books" component={() => <BooksPage/>} />
-          <Route path="/book/:isbn" component={() => <BookPage/>} />
+          <Route path="/books" component={() => <BooksPage user={user} />} />
+          <Route path="/book/:isbn" component={() => <BookPage user={user} />} />
+          <Route path="/cart" component={() => <CartPage user={user}/>} />
           <Route path="/login" component={() => <LoginPage user={user} setUser={setUser}/>} />
           
        </Router>  

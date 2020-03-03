@@ -55,6 +55,56 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(books)
 }
 
+func getCartBooks(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("GET /books/cart")
+	keys, ok := r.URL.Query()["username"]
+	query_string := "SELECT * FROM books"
+
+    if !ok || len(keys[0]) < 1 {
+		fmt.Println("Url Param 'genre' is missing")
+	}
+	fmt.Println(keys)
+	if(ok){
+		query_string = "SELECT isbn, book_title, page_num, book_price, inventory_count, restock_threshold, book_genre, publisher_sale_percentage, publisher_id FROM books left outer join book_checkouts using (ISBN) WHERE username = '"+keys[0]+"'";
+	}
+
+	rows, err := db.Query(query_string)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+
+	defer rows.Close()
+	var books []Book
+	for rows.Next() {
+		var book Book
+
+		err := rows.Scan(&book.ISBN, &book.Book_title, &book.Page_num, &book.Book_price, &book.Inventory_count, &book.Restock_threshold, &book.Book_genre, &book.Publisher_sale_percentage, &book.Publisher_id)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		var wg sync.WaitGroup
+
+		wg.Add(2)
+
+		go queryPublisher(w, book.Publisher_id, &book.Publisher, &wg)
+		go queryAuthors(w, book.ISBN, &book.Authors, &wg)
+
+		wg.Wait()
+
+		books = append(books, book)
+	}
+	
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	if(ok){
+		json.NewEncoder(w).Encode(books)
+	}else{
+		json.NewEncoder(w).Encode("No Username Specified")
+	}
+}
+
 
 func getBook(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]

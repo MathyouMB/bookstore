@@ -39,3 +39,9 @@ type User struct {
 	Password    						string     		`json:"Password"`
 	Role    							string     		`json:"Role"`
 }
+
+type BookCheckout struct {
+	Book_checkouts_id       	  		int        		`json:"Book_checkouts_id"`
+	ISBN								string  		`json:"ISBN"`
+	Username 							string			`json:"Username"`
+}

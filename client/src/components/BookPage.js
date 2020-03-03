@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Book from './BookContainer.js';
 import '../style/Book.scss';
 
-function BookPage() {
+function BookPage(props) {
   let[loading, setLoading] = useState(true);
   let[book, setBook] = useState();
   let[gotSuggestions, setGotSuggestions] = useState(true);
@@ -51,7 +51,7 @@ function BookPage() {
         loading ? "Loading..."
         :        
         <>
-        <Book book={book}/>
+        <Book book={book} user={props.user}/>
 
         <div className="book-details">
             <div className="book-details-container">

@@ -18,7 +18,7 @@ function Header(props) {
           : 
           <div className="header-logged-in-icons">
                <Link to={"/books"}><div className="header-title-text-signin">{userIcon}</div></Link>
-               <Link to={"/books"}><div className="header-title-text-signin">{shoppingCartIcon}</div></Link>
+               <Link to={"/cart"}><div className="header-title-text-signin">{shoppingCartIcon}</div></Link>
           </div>
         }
        

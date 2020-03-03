@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Book from './BookContainer.js';
 
-function Books() {
+function Books(props) {
   let[loading, setLoading] = useState(true);
   let[data, setData] = useState([]);
 
@@ -24,7 +24,7 @@ function Books() {
         loading ? "Loading..."
         :
         data.map( item => (
-            <Book book={item}/>
+            <Book book={item} user={props.user}/>
         ))
       
       }
