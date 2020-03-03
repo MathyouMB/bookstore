@@ -61,13 +61,29 @@ function Cart(props) {
 
   return (
     <div className="cart-page">
+      <div className="cart-page-summary">
+        <div className="cart-page-summer-title">Order Summary</div>
+        <div className="cart-page-row">
+            <div className="cart-page-cell">Items({"?"}):</div>
+            <div className="cart-page-cell">$Money</div>
+        </div>
+        <div className="cart-page-row">
+            <div className="cart-page-cell">Shipping and Handling:</div>
+            <div className="cart-page-cell">$0</div>
+        </div>
+        <hr></hr>
+        <div className="cart-page-row">
+            <div className="cart-page-cell">Order Total:</div>
+            <div className="cart-page-cell">$Big Money</div>
+        </div>
+      <div className="cart-checkout-button">Checkout</div>
+      </div>
       {
         loading ? "Loading..."
         :
         data.map( item => (
             <CartItem book={item}/>
         ))
-      
         }
     </div>
   );

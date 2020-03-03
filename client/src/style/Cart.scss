@@ -12,3 +12,48 @@
     //width:60%;
     margin:auto;    
 }
+
+.cart-checkout-button{
+    margin:auto;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+    display:flex;  
+    flex-direction: column;
+}
+
+.cart-page-summary{
+    border: 1px solid #ccc!important;
+    width:60%;
+    height: fit-content;
+    margin:auto;    
+    background-color: rgb(255, 255, 253);
+    margin-top:3em;
+    margin-bottom:2em;
+}
+
+.cart-item{
+    //@extend: rgb(255, 255, 253);
+}
+
+.cart-page-summer-title{
+    margin:auto;
+    text-align: center;
+    font-weight: bold;
+    padding:0.5em;
+}
+
+.cart-page-row{
+    display:flex;
+    justify-content: space-between;
+}
+
+.cart-page-cell{
+    padding:1em;
+}
