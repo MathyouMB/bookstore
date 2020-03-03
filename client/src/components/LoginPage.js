@@ -44,6 +44,7 @@ function LoginPage(props) {
         let fetchResponse = await fetch(`http://localhost:8080/login`, settings);
         let data = await fetchResponse.json();
         console.log(data);
+        props.setUser(data);
     } catch (e) {
         return e;
     }    
@@ -67,7 +68,7 @@ function LoginPage(props) {
 
   const renderRedirect = () => {
     if (redirect) {
-      return <Redirect to = {"/profile?ID="+props.profile.id} />
+      return <Redirect to = {"/books"} />
     }
   }
   

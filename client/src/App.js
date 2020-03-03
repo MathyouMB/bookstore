@@ -32,7 +32,7 @@ function App() {
           <br></br>
           <Route path="/books" component={() => <BooksPage/>} />
           <Route path="/book/:isbn" component={() => <BookPage/>} />
-          <Route path="/login" component={() => <LoginPage user={user}/>} />
+          <Route path="/login" component={() => <LoginPage user={user} setUser={setUser}/>} />
           
        </Router>  
     </div>
