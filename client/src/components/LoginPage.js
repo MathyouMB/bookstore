@@ -26,6 +26,11 @@ function LoginPage(props) {
   })
 
   const queryData = async () =>{
+    
+    const b = {
+        "Username":"cecila84",
+        "Password":"WbWvAw5PiV51gXrJbCm0"
+    }
     const settings = {
         method: 'POST',
         headers: {
@@ -33,10 +38,7 @@ function LoginPage(props) {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
         },
-        body:{
-            "Username":"cecila84",
-            "Password":"WbWvAw5PiV51gXrJbCm0"
-        }
+        body: JSON.stringify(b)
     };
     try {
         let fetchResponse = await fetch(`http://localhost:8080/login`, settings);
