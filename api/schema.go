@@ -28,4 +28,14 @@ type Book struct {
 
 }
 
-//if this randomly crashes later its probably cus I added publisher and docker didnt build right
+
+type User struct {
+	Username       	  					string        `json:"Username"`
+	First_name    						string     		`json:"First_name"`
+	Last_name    						string     		`json:"Last_name"`
+	Billing_address    					string     		`json:"Billing_address"`
+	Credit_card_number     				int     		`json:"Credit_card_number"`
+	Credit_card_cvs   					int     		`json:"Credit_card_cvs"`
+	Email_address    					string     		`json:"Email_address"`
+	Password    						string     		`json:"Password"`
+}

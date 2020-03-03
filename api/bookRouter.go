@@ -9,8 +9,6 @@ import (
 	_ "github.com/lib/pq"
 )
 
-var wg sync.WaitGroup
-
 func getBooks(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("GET /books")
 	keys, ok := r.URL.Query()["genre"]
@@ -23,7 +21,6 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 	if(ok){
 		query_string = "SELECT * FROM books WHERE book_genre = '"+keys[0]+"'";
 	}
-	//localhost:8080/books?genre=test
 
 	rows, err := db.Query(query_string)
 	if err != nil {
@@ -40,10 +37,13 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
+
+		var wg sync.WaitGroup
+
 		wg.Add(2)
 
-		go queryPublisher(w, book.Publisher_id, &book.Publisher)
-		go queryAuthors(w, book.ISBN, &book.Authors)
+		go queryPublisher(w, book.Publisher_id, &book.Publisher, &wg)
+		go queryAuthors(w, book.ISBN, &book.Authors, &wg)
 
 		wg.Wait()
 
@@ -72,11 +72,12 @@ func getBook(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+	var wg sync.WaitGroup
 
 	wg.Add(2)
 
-	go queryPublisher(w, book.Publisher_id, &book.Publisher)
-	go queryAuthors(w, book.ISBN, &book.Authors)
+	go queryPublisher(w, book.Publisher_id, &book.Publisher, &wg)
+	go queryAuthors(w, book.ISBN, &book.Authors, &wg)
 
 	wg.Wait()
 
@@ -112,7 +113,7 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode("Book Succesfully Created")
 }
 
-func queryPublisher(w http.ResponseWriter, id int, p *Publisher){
+func queryPublisher(w http.ResponseWriter, id int, p *Publisher, wg *sync.WaitGroup){
 	
 	defer wg.Done()
 	book_publisher, err := db.Query(`SELECT * FROM publishers WHERE publisher_id = $1`, id)
@@ -131,8 +132,7 @@ func queryPublisher(w http.ResponseWriter, id int, p *Publisher){
 		*p = publisher
 	}
 }
-
-func queryAuthors(w http.ResponseWriter, isbn string, a *[]Author){
+func queryAuthors(w http.ResponseWriter, isbn string, a *[]Author, wg *sync.WaitGroup){
 	
 	defer wg.Done()
 	book_authors, err := db.Query(`SELECT author_id, first_name, last_name, artist_name, authors.publisher_id FROM (authors join book_authors using(author_id)) left outer join books using (isbn) WHERE isbn = $1`, isbn)
