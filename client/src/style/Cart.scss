@@ -1,7 +1,14 @@
 .cart-page{
     width:100%;
     display:flex;
-    flex-wrap: wrap;
+    //flex-wrap: wrap;
     margin:auto;
+    flex-direction: column;
     justify-content: center;
+}
+
+.cart-item{
+    display:flex;
+    //width:60%;
+    margin:auto;    
 }
