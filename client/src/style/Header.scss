@@ -8,6 +8,7 @@
     position: fixed;
     z-index: 1000;
     padding:0.5em;
+    justify-content: space-between;
 }
 
 .header-title-text{
@@ -16,4 +17,15 @@
     padding-left: 1em;
     padding-top: 0.1em;
 
+}
+
+.header-title-text-signin{
+    font-size: 3em;
+    padding-top: 0.1em;
+    margin-right:1em;
+}
+
+.header-logged-in-icons{
+    display:flex;
+    
 }

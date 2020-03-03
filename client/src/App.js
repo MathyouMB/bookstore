@@ -17,11 +17,13 @@ function App() {
 
   //report pages tbd
 
+  let [user, setUser] = useState();
+
 
   return (
     <div className="App">
       <Router>
-          <Header/>
+          <Header user={user}/>
           <br></br>
           <br></br>
           <br></br>
