@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"github.com/gorilla/mux"
+	"github.com/gorilla/handlers"
 	_ "github.com/lib/pq"
 )
 
@@ -56,6 +57,7 @@ func init() {
 
 func main() {
 	r := mux.NewRouter()
+	//corsObj:=handlers.AllowedOrigins([]string{"*"})
 	r.HandleFunc("/test", testRequest).Methods("GET")
 	r.HandleFunc("/books", getBooks).Methods("GET")
 	r.HandleFunc("/books", createBook).Methods("POST")
@@ -63,5 +65,6 @@ func main() {
 	r.HandleFunc("/login", login).Methods("POST")
 	http.Handle("/", r)
 	fmt.Println("Server is running on port 8080")
-	http.ListenAndServe(":8080", r)
+	//http.ListenAndServe(":8080", r)
+	http.ListenAndServe(":8080", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization","Access-Control-Allow-Origin"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(r))
 }

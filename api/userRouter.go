@@ -22,7 +22,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-
+	fmt.Println(body.Username)
 	rows, err := db.Query(`SELECT * FROM users WHERE username = $1`, body.Username)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusNotFound)

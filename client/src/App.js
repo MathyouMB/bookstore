@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch, Link } from "react-router-dom";
 import BooksPage from './components/BooksPage'
 import BookPage from './components/BookPage'
+import LoginPage from './components/LoginPage'
 import Header from './components/Header';
 import './style/App.scss';
 
@@ -31,6 +32,8 @@ function App() {
           <br></br>
           <Route path="/books" component={() => <BooksPage/>} />
           <Route path="/book/:isbn" component={() => <BookPage/>} />
+          <Route path="/login" component={() => <LoginPage user={user}/>} />
+          
        </Router>  
     </div>
   );

@@ -14,7 +14,7 @@ function Header(props) {
         <Link to={"/books"}><div className="header-title-text">{bookIcon}</div></Link>
         {
           props.user == null ? 
-              <Link to={"/books"}><div className="header-title-text-signin">{signinIcon}</div></Link>
+              <Link to={"/login"}><div className="header-title-text-signin">{signinIcon}</div></Link>
           : 
           <div className="header-logged-in-icons">
                <Link to={"/books"}><div className="header-title-text-signin">{userIcon}</div></Link>
