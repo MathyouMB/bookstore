@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import '../style/Cart.scss';
+import Book from './BookContainer.js';
 
 function CartItem(props) {
     return (
         <div className="cart-item">
-          {props.item.Book_title}
+           <Book book={props.item} user={props.user} ordered={true}/>
         </div>
       );
 }

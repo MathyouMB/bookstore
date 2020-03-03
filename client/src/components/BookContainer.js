@@ -50,7 +50,10 @@ function BookContainer(props) {
           <div className="book-title"><b>{props.book.Book_title}</b></div>
           <div className="book-genre">{props.book.Book_genre}</div>
           <div className="book-price"><b>${props.book.Book_price}</b></div>
+          { 
+          props.ordered != null ? "" : 
           <input type="button" className="book-order-button" value="Add to Cart" onClick={addToCart}></input>
+          }
       </div>
     );
   }
