@@ -60,6 +60,7 @@ func main() {
 	r.HandleFunc("/books", getBooks).Methods("GET")
 	r.HandleFunc("/books", createBook).Methods("POST")
 	r.HandleFunc("/books/{id}", getBook).Methods("GET")
+	r.HandleFunc("/login", login).Methods("POST")
 	http.Handle("/", r)
 	fmt.Println("Server is running on port 8080")
 	http.ListenAndServe(":8080", r)

@@ -11,6 +11,11 @@ Important order to ensure application is up to date
 
 /books
 
+login{
+	"Username":"cecila84",
+	"Password":"WbWvAw5PiV51gXrJbCm0"
+}
+
 {
 	"Book_title":"Test3",
 	"Page_num": 2,

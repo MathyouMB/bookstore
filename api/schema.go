@@ -28,9 +28,8 @@ type Book struct {
 
 }
 
-
 type User struct {
-	Username       	  					string        `json:"Username"`
+	Username       	  					string          `json:"Username"`
 	First_name    						string     		`json:"First_name"`
 	Last_name    						string     		`json:"Last_name"`
 	Billing_address    					string     		`json:"Billing_address"`
@@ -38,4 +37,5 @@ type User struct {
 	Credit_card_cvs   					int     		`json:"Credit_card_cvs"`
 	Email_address    					string     		`json:"Email_address"`
 	Password    						string     		`json:"Password"`
+	Role    							string     		`json:"Role"`
 }
