@@ -26,7 +26,6 @@ function CartItem(props) {
         try {
             let fetchResponse = await fetch(`http://localhost:8080/checkout`, settings);
             let data = await fetchResponse.json();
-            //console.log(data);
             props.setLoading(true);
         } catch (e) {
             return e;

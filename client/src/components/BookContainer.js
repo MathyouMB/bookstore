@@ -50,8 +50,13 @@ function BookContainer(props) {
       }
     return (
       <div className="book-container">
-          {added ? <Redirect to={"cart"}></Redirect> : ""}
-          <Link to={"book/"+props.book.ISBN}><BookCover title={props.book.Book_title}/></Link>
+          {added ? <Redirect to={"/cart"}></Redirect> : ""}
+          {props.setLoading ? 
+          <div onClick={()=>{props.setLoading(true)}}><Link to={"/book/"+props.book.ISBN}><BookCover title={props.book.Book_title}/></Link></div>
+          :
+          <Link to={"/book/"+props.book.ISBN}><BookCover title={props.book.Book_title}/></Link>  
+          }
+          
           <div className="book-title"><b>{props.book.Book_title}</b></div>
           <div className="book-genre">{props.book.Book_genre}</div>
           <div className="book-price"><b>${props.book.Book_price}</b></div>

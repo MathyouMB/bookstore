@@ -114,7 +114,7 @@ function BookPage(props) {
                 gotSuggestions ? ""
                 :       
                     suggestions.filter(suggestion => suggestion.ISBN != book.ISBN).map( item => (
-                        <Book book={item}/>
+                        <Book book={item} setLoading={setLoading}/>
                     ))     
             }
         </>
