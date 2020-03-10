@@ -78,3 +78,26 @@ func createBookCheckout(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode("Book Checkout Succesfully Created")
 }
+
+func deleteBookCheckout(w http.ResponseWriter, r *http.Request) {
+
+	fmt.Println("DELETE /checkout")
+	var body BookCheckoutBody
+
+	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	fmt.Println(body.ISBN)
+
+	_, err := db.Exec(`DELETE FROM book_checkouts WHERE ISBN = $1 AND Username = $2`, body.ISBN, body.Username)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode("Book Checkout Succesfully removefrom cart")
+}

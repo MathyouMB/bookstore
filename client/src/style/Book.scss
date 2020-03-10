@@ -45,9 +45,9 @@
     box-sizing: border-box;
     text-decoration:none;
     text-transform:uppercase;
+    color:#5e5c5c;
     font-family:'Roboto',sans-serif;
     font-weight:400;
-    color:#5e5c5c;;
     text-align:center;
     transition: all 0.15s;
     width: 9em;
@@ -104,6 +104,11 @@
 .book-details-grid{
     //display: grid;
     //grid-row: 1;
+
+    hr {
+        margin-left: 0;
+        margin-right: 0;
+      }
 }
 
 .book-details-grid-row{
@@ -126,7 +131,8 @@
 }
 
 .book-details-heading{
-    margin:auto;
+    margin-top:1em;
+    //margin:auto;
     text-align: center;
 
 }

@@ -64,10 +64,11 @@ func main() {
 	r.HandleFunc("/books", createBook).Methods("POST")
 	r.HandleFunc("/checkout", createBookCheckout).Methods("POST")
 	r.HandleFunc("/checkout", getBookCheckouts).Methods("GET")
+	r.HandleFunc("/checkout", deleteBookCheckout).Methods("DELETE")
 	r.HandleFunc("/books/{id}", getBook).Methods("GET")
 	r.HandleFunc("/login", login).Methods("POST")
 	http.Handle("/", r)
 	fmt.Println("Server is running on port 8080")
 	//http.ListenAndServe(":8080", r)
-	http.ListenAndServe(":8080", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization","Access-Control-Allow-Origin"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(r))
+	http.ListenAndServe(":8080", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization","Access-Control-Allow-Origin"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(r))
 }

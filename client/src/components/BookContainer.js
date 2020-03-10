@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBook} from '@fortawesome/free-solid-svg-icons'
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import '../style/Book.scss';
 
 function BookCover(props) {
@@ -20,6 +20,9 @@ function BookCover(props) {
 
 
 function BookContainer(props) {
+
+    let [added, setAdded] = useState(false);
+
     const addToCart = async () =>{
     
         const b = {
@@ -39,6 +42,7 @@ function BookContainer(props) {
             let fetchResponse = await fetch(`http://localhost:8080/checkout`, settings);
             let data = await fetchResponse.json();
             console.log(data);
+            setAdded(true)
         } catch (e) {
             return e;
         }    
@@ -46,6 +50,7 @@ function BookContainer(props) {
       }
     return (
       <div className="book-container">
+          {added ? <Redirect to={"cart"}></Redirect> : ""}
           <Link to={"book/"+props.book.ISBN}><BookCover title={props.book.Book_title}/></Link>
           <div className="book-title"><b>{props.book.Book_title}</b></div>
           <div className="book-genre">{props.book.Book_genre}</div>
