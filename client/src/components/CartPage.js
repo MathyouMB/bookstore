@@ -90,7 +90,7 @@ function Cart(props) {
     for(let i=0;i<data.length;i++){
         s+=data[0].Book_price;
     }
-    setTotalCost(s);
+    setTotalCost(s.toFixed(2));
     setData(data);
     setLoading(false);
   }
