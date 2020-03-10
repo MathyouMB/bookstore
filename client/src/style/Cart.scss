@@ -64,7 +64,7 @@
     transition: all 0.15s;
     width: 9em;
     margin:auto;
-    margin-top: 1.3em;
+    margin-top: 2em;
 
 }
 .cart-order-button:hover{
@@ -85,6 +85,8 @@
 }
 
 .cart-item{
+    margin:auto;
+    width:80%;
     //@extend: rgb(255, 255, 253);
 }
 

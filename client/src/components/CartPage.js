@@ -37,9 +37,8 @@ function CartItem(props) {
         <div className="cart-item">
            <Book book={props.book} user={props.user} ordered={true}/>
            <div className="book-details-grid">
-                <div className="book-details-heading"><h3>Details & Spec</h3></div>
-                <hr></hr>
-                <br></br>
+               <br></br>
+               <br></br>
                 <div className="book-details-grid-row">
                     <div className="book-details-grid-row-cell">Title</div>
                     <div className="book-details-grid-row-cell">{props.book.Book_title}</div>
@@ -72,6 +71,7 @@ function CartItem(props) {
                     }
                     </div>
                 </div>
+                <br></br>
                 <input type="button" className="cart-order-button" value="Remove" onClick={()=>{RemoveFromCart()}}></input>
             </div>
         </div>
@@ -81,10 +81,17 @@ function CartItem(props) {
 function Cart(props) {
   let[loading, setLoading] = useState(true);
   let[data, setData] = useState([]);
+  let[totalCost,setTotalCost] = useState(0);
 
   const getCheckouts = async () => {
     let response = await fetch(`http://localhost:8080/books/cart?username=`+props.user.Username);
     let data = await response.json()
+
+    let s =0;
+    for(let i=0;i<data.length;i++){
+        s+=data[0].Book_price;
+    }
+    setTotalCost(s);
     setData(data);
     setLoading(false);
   }
@@ -105,30 +112,24 @@ function Cart(props) {
             <div className="cart-empty-text">Empty Cart</div>
         :
             <>
-            <div className="cart-page-row">
-                <div className="cart-page-cell">Items({"?"}):</div>
-                <div className="cart-page-cell">$Money</div>
-            </div>
-            <div className="cart-page-row">
-                <div className="cart-page-cell">Shipping and Handling:</div>
-                <div className="cart-page-cell">$0</div>
-            </div>
+            {
+                loading || data == null ? ""
+                :
+                data.map( item => (
+                    <CartItem book={item} user={props.user} setLoading={setLoading}/>
+                ))
+            }
             <hr></hr>
             <div className="cart-page-row">
                 <div className="cart-page-cell">Order Total:</div>
-                <div className="cart-page-cell">$Big Money</div>
+                <div className="cart-page-cell">${totalCost}</div>
             </div>
+            <hr></hr>
             <div className="cart-checkout-button">Checkout</div>
             </>
         }
       </div>
-      {
-        loading || data == null ? ""
-        :
-        data.map( item => (
-            <CartItem book={item} user={props.user} setLoading={setLoading}/>
-        ))
-      }
+      
     </div>
   );
 }
