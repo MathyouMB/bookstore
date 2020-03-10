@@ -7,9 +7,13 @@ function CartItem(props) {
     const RemoveFromCart = async () =>{
         console.log("test")
         const b = {
+            "Book_checkouts_id": props.book.Book_checkouts_id,
             "ISBN": props.book.ISBN,
             "Username":props.user.Username
         }
+        console.log(b)
+        console.log(props)
+        console.log(props.book)
         const settings = {
             method: 'DELETE',
             headers: {

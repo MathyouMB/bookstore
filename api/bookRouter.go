@@ -55,6 +55,22 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(books)
 }
 
+type CartBook struct {
+	Book_checkouts_id       	  		int        		`json:"Book_checkouts_id"`
+	ISBN       	  						string          `json:"ISBN"`
+	Book_title    						string   		`json:"Book_title"`
+	Page_num      						int     		`json:"Page_num"`
+	Book_price    						float32     	`json:"Book_price"`
+	Inventory_count     				int     		`json:"Inventory_count"`
+	Restock_threshold   				int     		`json:"Restock_threshold"`
+	Book_genre    						string     		`json:"Book_genre"`
+	Publisher_sale_percentage    		float32     	`json:"Publisher_sale_percentage"`
+	Publisher_id   						int     		`json:"Publisher_id"`
+	Publisher  							Publisher 		`json:"Publisher"`
+	Authors  							[]Author 		`json:"Authors"`
+
+}
+
 func getCartBooks(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("GET /books/cart")
 	keys, ok := r.URL.Query()["username"]
@@ -65,7 +81,7 @@ func getCartBooks(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println(keys)
 	if(ok){
-		query_string = "SELECT isbn, book_title, page_num, book_price, inventory_count, restock_threshold, book_genre, publisher_sale_percentage, publisher_id FROM books left outer join book_checkouts using (ISBN) WHERE username = '"+keys[0]+"'";
+		query_string = "SELECT book_checkouts_id, isbn, book_title, page_num, book_price, inventory_count, restock_threshold, book_genre, publisher_sale_percentage, publisher_id FROM books left outer join book_checkouts using (ISBN) WHERE username = '"+keys[0]+"'";
 	}
 
 	rows, err := db.Query(query_string)
@@ -74,11 +90,11 @@ func getCartBooks(w http.ResponseWriter, r *http.Request) {
 	}
 
 	defer rows.Close()
-	var books []Book
+	var books []CartBook
 	for rows.Next() {
-		var book Book
+		var book CartBook
 
-		err := rows.Scan(&book.ISBN, &book.Book_title, &book.Page_num, &book.Book_price, &book.Inventory_count, &book.Restock_threshold, &book.Book_genre, &book.Publisher_sale_percentage, &book.Publisher_id)
+		err := rows.Scan(&book.Book_checkouts_id,&book.ISBN, &book.Book_title, &book.Page_num, &book.Book_price, &book.Inventory_count, &book.Restock_threshold, &book.Book_genre, &book.Publisher_sale_percentage, &book.Publisher_id)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return

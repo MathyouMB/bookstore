@@ -10,6 +10,7 @@ import (
 )
 
 type BookCheckoutBody struct {
+	Book_checkouts_id  int `json:"Book_checkouts_id"`
 	ISBN		string  `json:"ISBN"`
 	Username 	string	`json:"Username"`
 }
@@ -91,7 +92,7 @@ func deleteBookCheckout(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(body.ISBN)
 
-	_, err := db.Exec(`DELETE FROM book_checkouts WHERE ISBN = $1 AND Username = $2`, body.ISBN, body.Username)
+	_, err := db.Exec(`DELETE FROM book_checkouts WHERE book_checkouts_id = $1`, body.Book_checkouts_id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

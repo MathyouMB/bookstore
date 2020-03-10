@@ -25,7 +25,6 @@ type Book struct {
 	Publisher_id   						int     		`json:"Publisher_id"`
 	Publisher  							Publisher 		`json:"Publisher"`
 	Authors  							[]Author 		`json:"Authors"`
-
 }
 
 type User struct {
