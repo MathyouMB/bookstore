@@ -87,8 +87,10 @@ function Cart(props) {
     let data = await response.json()
 
     let s =0;
-    for(let i=0;i<data.length;i++){
-        s+=data[0].Book_price;
+    if(data != null){  
+        for(let i=0;i<data.length;i++){
+            s+=data[0].Book_price;
+        }
     }
     setTotalCost(s.toFixed(2));
     setData(data);
@@ -108,7 +110,13 @@ function Cart(props) {
         <hr></hr>
         {
         loading || data == null || data.length <=0 ? 
-            <div className="cart-empty-text">Empty Cart</div>
+            <>
+            <div className="cart-empty-text">Empty Cart</div>  
+            {
+                props.user != null ? "" :
+                <div className="cart-empty-text">(Must be logged in)</div>
+            }
+            </>
         :
             <>
             {
