@@ -44,3 +44,16 @@ type BookCheckout struct {
 	ISBN								string  		`json:"ISBN"`
 	Username 							string			`json:"Username"`
 }
+
+type UserOrder struct {
+	User_order_id       	  			int        		`json:"User_order_id"`
+	Preferred_billing_address			string  		`json:"Preferred_billing_address"`
+	Preferred_credit_num       	  		int        		`json:"Preferred_credit_num"`
+	Preferred_credit_cvs       	  		int        		`json:"Preferred_credit_cvs"`
+	Order_day       	  				int        		`json:"Order_day"`
+	Order_month       	  				int        		`json:"Order_month"`
+	Order_year       	  				int        		`json:"Order_year"`
+	Total_paid       	  				int        		`json:"Total_paid"`
+	Tracking_status 					string			`json:"Tracking_status"`
+	Username 							string			`json:"Username"`
+}

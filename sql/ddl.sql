@@ -103,10 +103,14 @@ create table user_orders
 	 preferred_credit_cvs			numeric(3,0),
 	 order_day						numeric(2,0),
 	 order_month					numeric(2,0),
-	 order_year						numeric(4,0)
+	 order_year						numeric(4,0),
+	 total_paid 					decimal(7,2) NOT NULL,
+	 tracking_status				varchar(25) NOT NULL,
+	 username						varchar(10) NOT NULL,
+	 foreign key (username) references users (username)
 	);
 
-create table checkout_orders
+create table user_ordered_books
 	(
 	 book_checkouts_id				int NOT NULL,
 	 user_order_id					int NOT NULL,
