@@ -1,4 +1,4 @@
-# COMP3005 - Bookstore Project
+# COMP3005 - 📚 Bookstore Project
 
 ## Overview
 
