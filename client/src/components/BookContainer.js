@@ -22,12 +22,12 @@ function BookCover(props) {
 function BookContainer(props) {
 
     let [added, setAdded] = useState(false);
-
+    
     const addToCart = async () =>{
     
         const b = {
             "ISBN": props.book.ISBN,
-            "Username":"cecila84"
+            "Username": props.user.Username
         }
         const settings = {
             method: 'POST',
@@ -61,7 +61,7 @@ function BookContainer(props) {
           <div className="book-genre">{props.book.Book_genre}</div>
           <div className="book-price"><b>${props.book.Book_price}</b></div>
           { 
-          props.ordered != null ? "" : 
+          props.ordered != null || props.user == null ? "" : 
           <input type="button" className="book-order-button" value="Add to Cart" onClick={addToCart}></input>
           }
       </div>

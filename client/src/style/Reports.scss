@@ -1,0 +1,15 @@
+.reports{
+    border: 1px solid rgb(255, 255, 255)!important;
+    width:80%;
+    height: fit-content;
+    margin:auto;    
+    background-color: rgb(255, 255, 255);
+    margin-top:3em;
+    margin-bottom:2em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    padding:2em;
+}
+
+.graph-row{
+    display:flex;
+}

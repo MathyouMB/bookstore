@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import '../style/Login.scss';
 import {Link, Redirect} from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faUser} from '@fortawesome/free-solid-svg-icons'
 
 function LoginPage(props) {
-  
-  //reading text box
+  const icon = <FontAwesomeIcon icon={faUser} />
+
   let [Username,setUsername] = useState("");
   let [password, setPassword] = useState("");
   let [redirect, setRedirect] = useState(false);
@@ -26,10 +28,10 @@ function LoginPage(props) {
   })
 
   const queryData = async () =>{
-    
-    const b = {
-        "Username":"cecila84",
-        "Password":"WbWvAw5PiV51gXrJbCm0"
+
+   const b = {
+    "Username": Username,
+    "Password": password
     }
     const settings = {
         method: 'POST',
@@ -48,22 +50,7 @@ function LoginPage(props) {
     } catch (e) {
         return e;
     }    
-/*
-    if(Username.length>0 && password.length>0){
-      let data = await client
-        .query({
-          query: LOGIN,
-          variables: {
-            "Username": Username,
-            "password": password
-          }
-        });
-      console.log(data.data.login);
-      props.setProfile(data.data.login)
-    }else{
-      console.log("invalid info...")
-    }
-*/
+
   }
 
   const renderRedirect = () => {
@@ -76,27 +63,21 @@ function LoginPage(props) {
     <div className="login-page">
     {renderRedirect()}
     <div className="login-page-container">
-      <div className="wrapper">
-        {/*logo here*/}
+      <div className="login-icon">
+        {icon}
       </div>
       <br></br>
       <br></br>
       <div className="group">      
-        <input type="text" value={Username} onChange={updateUsername} required></input>
-        <span className="highlight"></span>
-        <span className="bar"></span>
-        <label>Username</label>
+        <input className="login-input" type="text" value={Username} placeholder="Username" onChange={updateUsername} required></input>
       </div>
 
       <div className="group">      
-        <input type="password" value={password} onChange={updatePassword}  required></input>
-        <span className="highlight"></span>
-        <span className="bar"></span>
-        <label>Password</label>
+        <input className="login-input" type="password" value={password} placeholder="Password" onChange={updatePassword}  required></input>
       </div>
 
       <div className="wrapper">
-        <a className="fancy-button bg-gradient1" onClick={queryData}><span>Login</span></a>
+        <div className="login-button" onClick={()=>{queryData()}}>Login</div>
       </div>
     </div>
     </div>

@@ -105,3 +105,25 @@
 .cart-page-cell{
     padding:1em;
 }
+
+.cart-checkout-input-wrapper{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cart-checkout-input{
+    width:100%;
+    margin:auto;
+    padding: 0.5em;
+    margin:0.25em;
+}
+
+.cart-checkout-input-wrap{
+    margin: auto;
+    width: 80%;
+}
+
+.margin-center{
+    margin-top:4em;
+}

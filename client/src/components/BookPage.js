@@ -76,10 +76,12 @@ function BookPage(props) {
                     <div className="book-details-grid-row-cell">{book.Publisher.Publisher_name}</div>
                 </div>
                 <div className="book-details-grid-row">
-                    <div className="book-details-grid-row-cell">Authors</div>
+                    {book.Authors != null && 
+                        <div className="book-details-grid-row-cell">Authors</div>
+                    }
                     <div className="book-details-grid-row-cell">
                         
-                        {   
+                        {book.Authors != null && 
                             book.Authors.map( author => (
                             <div>• {author.First_name} {author.Last_name}</div>
                             ))        

@@ -23,6 +23,8 @@ type Book struct {
 	Book_genre    						string     		`json:"Book_genre"`
 	Publisher_sale_percentage    		float32     	`json:"Publisher_sale_percentage"`
 	Publisher_id   						int     		`json:"Publisher_id"`
+	Hidden   							bool     		`json:"Hidden"`
+	Expenditure   						float32     	`json:"Expenditure"`
 	Publisher  							Publisher 		`json:"Publisher"`
 	Authors  							[]Author 		`json:"Authors"`
 }
@@ -53,7 +55,8 @@ type UserOrder struct {
 	Order_day       	  				int        		`json:"Order_day"`
 	Order_month       	  				int        		`json:"Order_month"`
 	Order_year       	  				int        		`json:"Order_year"`
-	Total_paid       	  				int        		`json:"Total_paid"`
+	Total_paid       	  				float32        	`json:"Total_paid"`
 	Tracking_status 					string			`json:"Tracking_status"`
 	Username 							string			`json:"Username"`
+	Books  								[]Book 			`json:"Books"`
 }

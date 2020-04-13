@@ -1,14 +1,15 @@
 version: '3'
 
 services:
-  client:
-    build: ./client
-    ports:
-      - "80:80"
-    depends_on:
-      - api
-    networks:
-      - bookstore
+
+  #client:
+  #  build: ./client
+  #  ports:
+  #    - "80:80"
+  #  depends_on:
+  #    - api
+  #  networks:
+  #    - bookstore
 
   api:
     build: ./api
