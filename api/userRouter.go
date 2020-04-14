@@ -48,3 +48,27 @@ func login(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode("Login Failed")
 	}
 }
+
+func createUser(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("POST /users")
+	var user User
+	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+		fmt.Println(err)
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	
+	
+	_, err := db.Exec(`INSERT INTO users (username, first_name, last_name, billing_address, credit_card_num, credit_card_cvs, email_address, password, role) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`, user.Username, user.First_name, user.Last_name, user.Billing_address, user.Credit_card_number, user.Credit_card_cvs, user.Email_address, user.Password, user.Role)
+	if err != nil {
+		fmt.Println(err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode("Book Succesfully Created")
+}

@@ -78,7 +78,9 @@ function LoginPage(props) {
 
       <div className="wrapper">
         <div className="login-button" onClick={()=>{queryData()}}>Login</div>
+        <div className="signup-wrap"> <Link to="/signup"><input type="button" className="signup-button" value="Signup"></input></Link></div>
       </div>
+     
     </div>
     </div>
   );

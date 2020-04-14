@@ -6,6 +6,7 @@ import BooksManagementPage from './components/BookManagementPage'
 import LoginPage from './components/LoginPage'
 import CartPage from './components/CartPage'
 import OrdersPage from './components/OrdersPage'
+import UserCreationPage from './components/SignupPage'
 import Header from './components/Header';
 import './style/App.scss';
 import Orders from './components/OrdersPage';
@@ -49,6 +50,7 @@ function App() {
           <Route path="/management" component={() => <BooksManagementPage user={user} />} />
           <Route path="/cart" component={() => <CartPage user={user}/>} />
           <Route path="/login" component={() => <LoginPage user={user} setUser={setUser}/>} />
+          <Route path="/signup" component={() => <UserCreationPage user={user} />} />
           
        </Router>  
     </div>

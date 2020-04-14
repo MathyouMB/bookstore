@@ -73,6 +73,7 @@ func main() {
 	r.HandleFunc("/checkout", getBookCheckouts).Methods("GET")
 	r.HandleFunc("/checkout", deleteBookCheckout).Methods("DELETE")
 	r.HandleFunc("/login", login).Methods("POST")
+	r.HandleFunc("/users", createUser).Methods("POST")
 	r.HandleFunc("/order", createUserOrder).Methods("POST")
 	r.HandleFunc("/order", getUserOrders).Methods("GET")
 	

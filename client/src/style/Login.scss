@@ -9,6 +9,28 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
     padding:2em;
 }
+.signup-wrap{
+	display: flex;
+	justify-content: center;
+}
+.signup-button{
+    display:inline-block;
+   // padding:1em 1.5em;
+    padding:0.7em;
+    border:0.13em solid #5e5c5c;
+    box-sizing: border-box;
+    text-decoration:none;
+    text-transform:uppercase;
+    color:#5e5c5c;
+    font-family:'Roboto',sans-serif;
+    font-weight:400;
+    text-align:center;
+    transition: all 0.15s;
+    width: 9em;
+    margin:auto;
+    margin-top: 2em;
+
+}
 .login-icon{
     font-size: 3em;
     padding-top: 0.1em;
@@ -44,7 +66,7 @@
     display:flex;  
     flex-direction: column;
     margin-top: 3em;
-    margin-bottom: 2em;
+    margin-bottom: 0.5em;
 }
 
 /*.login-page{
