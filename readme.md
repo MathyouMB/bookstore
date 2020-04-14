@@ -11,6 +11,7 @@ The following project is my final assignment for Carleton's COMP3005: Database M
 ## Admin View
 
 <img src="./docs/screenshots/15-reportsview.png">
+<img src="./docs/screenshots/13-inventoryview.png">
 
 ## Assignment Prompt
 
