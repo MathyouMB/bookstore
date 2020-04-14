@@ -1,1 +1,3 @@
 -create signups for user
+-remove plurals from schema [DONE]
+-add address and email address to publisher table
