@@ -27,3 +27,7 @@ were sold in the previous month (you do not have to implement the email sending 
 ## Schema
 
 <img src="./docs/schema.png">
+
+## ERD
+
+<img src="./docs/erd.png">
