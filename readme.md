@@ -40,6 +40,8 @@ docker-compose up
 
 ## Schema
 
+It should be noted that this schema was built to model the assignment prompt.
+
 <img src="./docs/schema.png">
 
 ## ERD
