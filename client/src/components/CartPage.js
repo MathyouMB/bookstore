@@ -113,8 +113,8 @@ function Cart(props) {
 
     const order = {
         "Preferred_billing_address": (billingAddress.length < 1 ? props.user.Billing_address : billingAddress),
-        "Preferred_credit_num": (creditcard.length < 1 ? props.user.Credit_card_number : creditcard),
-        "Preferred_credit_cvs": (cvs.length < 1 ? props.user.Credit_card_cvs : cvs),
+        "Preferred_credit_num": parseInt((creditcard.length < 1 ? props.user.Credit_card_number : creditcard)),
+        "Preferred_credit_cvs": parseInt((cvs.length < 1 ? props.user.Credit_card_cvs : cvs)),
         "Order_day": today.getDate(),
         "Order_month": today.getMonth()+1,
         "Order_year": today.getFullYear(),
