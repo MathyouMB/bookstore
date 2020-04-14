@@ -1,33 +1,35 @@
+
+
 create table publishers
 	(
 	 publisher_id		SERIAL PRIMARY KEY, 
-	 email				varchar(40),
-	 address			varchar(40),
-	 publisher_name		varchar(40) NOT NULL
+	 email				varchar(40), /*publisher's email*/
+	 address			varchar(40), /*publisher's address*/
+	 publisher_name		varchar(40) NOT NULL /*publisher's name*/
 	);
 
 create table publisher_contacts
 
 	(
 	 publisher_contact_id		SERIAL PRIMARY KEY, 
-	 publisher_id				int NOT NULL,
-	 phone_number				varchar(12) NOT NULL,
-	 foreign key (publisher_id) references publishers (publisher_id)
+	 publisher_id				int NOT NULL, 
+	 phone_number				varchar(12) NOT NULL, /*publisher's phone number*/
+	 foreign key (publisher_id) references publishers (publisher_id) /*reference publisher*/
 	);
 
 create table books
 	(
-	 isbn						varchar(13) NOT NULL,
-	 book_title					varchar(50) NOT NULL,
-	 page_num					numeric(5,0) NOT NULL,
-	 book_price 				decimal(7,2) NOT NULL,
-	 inventory_count			numeric(5,0) NOT NULL,
-	 restock_threshold			numeric(5,0) NOT NULL,
-	 book_genre					varchar(30) NOT NULL,
-	 publisher_sale_percentage	numeric(3,2) NOT NULL,
+	 isbn						varchar(13) NOT NULL, /*book's unique identifier*/
+	 book_title					varchar(50) NOT NULL, /*book's title*/
+	 page_num					numeric(5,0) NOT NULL, /*book's total page number*/
+	 book_price 				decimal(7,2) NOT NULL, /*book's price*/
+	 inventory_count			numeric(5,0) NOT NULL, /*book's current inventory*/
+	 restock_threshold			numeric(5,0) NOT NULL, /*book's restock threshold*/
+	 book_genre					varchar(30) NOT NULL, /*book's genre*/
+	 publisher_sale_percentage	numeric(3,2) NOT NULL, /*publishers's percent of sales*/
 	 publisher_id				int NOT NULL,
-	 hidden						boolean,
-	 expenditure				decimal(7,2) NOT NULL,
+	 hidden						boolean,				/*if book is visible to default users*/
+	 expenditure				decimal(7,2) NOT NULL,	/*cost to create a book*/
 	 primary key (isbn),
 	 foreign key (publisher_id) references publishers (publisher_id)
 	);
@@ -35,8 +37,8 @@ create table books
 create table collections
 	(
 	 collection_id				SERIAL PRIMARY KEY, 
-	 collection_title			varchar(50),
-	 collection_description		varchar(1000)
+	 collection_title			varchar(50),	/*collection name*/
+	 collection_description		varchar(1000)	/*collection description*/
 	);
 
 create table collection_books
@@ -47,24 +49,21 @@ create table collection_books
 	 foreign key (collection_id) references collections (collection_id)
 	);
 	
-/* we havent given publishers the multi contacts thing yet*/
-
 create table bank_accounts
 	(publisher_id		int NOT NULL,
-	 account_balance	numeric(8,2),
+	 account_balance	numeric(8,2),	/*publisher's account balance*/
 	 primary key (publisher_id),
 	 foreign key (publisher_id) references publishers (publisher_id)
 	);
 
 create table authors
 	(author_id			SERIAL PRIMARY KEY, 
-	 first_name			varchar(25) NOT NULL,
-	 last_name			varchar(25) NOT NULL,
-	 artist_name 		varchar(25),
+	 first_name			varchar(25) NOT NULL,	/*authors' first name*/
+	 last_name			varchar(25) NOT NULL,	/*authors' last name*/
+	 artist_name 		varchar(25),			
 	 publisher_id		int NOT NULL,
 	 foreign key (publisher_id) references publishers (publisher_id)
 	);
-/*needs foreign key to publisher */
 
 create table book_authors
 	(
@@ -78,8 +77,8 @@ create table book_authors
 create table store_orders
 	(
 	 store_order_id				SERIAL PRIMARY KEY, 
-	 book_quantity				numeric(5,0),
-	 email_text					varchar(1000),
+	 book_quantity				numeric(5,0),		/*quantity ordered*/
+	 email_text					varchar(1000),		/*what would theoretically be sent in the email*/
 	 isbn					varchar(13) NOT NULL,
 	 publisher_id				int NOT NULL, 
 	 foreign key (isbn) references books (isbn),
@@ -89,15 +88,15 @@ create table store_orders
 
 create table users
 	(
-	 username				varchar(30) NOT NULL,
-	 first_name				varchar(30) NOT NULL,
-	 last_name				varchar(30) NOT NULL,
-	 billing_address		varchar(60) NOT NULL,
-	 credit_card_num				numeric(19,0),
-	 credit_card_cvs				numeric(4,0),
-	 email_address			varchar(30) NOT NULL,
-	 password				varchar(25) NOT NULL,
-	 role					varchar(25) NOT NULL,
+	 username				varchar(30) NOT NULL, /*username*/
+	 first_name				varchar(30) NOT NULL, /*user's first name*/
+	 last_name				varchar(30) NOT NULL, /*user's last name*/
+	 billing_address		varchar(60) NOT NULL, /*user's address*/
+	 credit_card_num				numeric(19,0), /*user's credit card*/
+	 credit_card_cvs				numeric(4,0), /*user's credit card cvs*/
+	 email_address			varchar(30) NOT NULL, /*user's email*/
+	 password				varchar(25) NOT NULL,  /*user's password*/
+	 role					varchar(25) NOT NULL, /*owner vs default*/
 	 primary key (username)
 	);
 
@@ -113,14 +112,14 @@ create table book_checkouts
 create table user_orders
 	(
 	 user_order_id					SERIAL PRIMARY KEY, 
-	 preferred_billing_address		varchar(60) NOT NULL,
-	 preferred_credit_num			numeric(19,0),
-	 preferred_credit_cvs			numeric(3,0),
+	 preferred_billing_address		varchar(60) NOT NULL, /*user's prefered address for this order*/
+	 preferred_credit_num			numeric(19,0),	/*user's prefered credit card number*/
+	 preferred_credit_cvs			numeric(3,0),	/*user's prefered credit card number cvs*/
 	 order_day						numeric(2,0),
 	 order_month					numeric(2,0),
 	 order_year						numeric(4,0),
-	 total_paid 					decimal(7,2) NOT NULL,
-	 tracking_status				varchar(25) NOT NULL,
+	 total_paid 					decimal(7,2) NOT NULL, /*total paid on this order, we must keep this in case the price of a book changes after this order is created*/
+	 tracking_status				varchar(25) NOT NULL, /*orders tracking status */
 	 username						varchar(10) NOT NULL,
 	 foreign key (username) references users (username)
 	);
@@ -133,18 +132,6 @@ create table user_ordered_books
 	 foreign key (isbn) references books (isbn),
 	 foreign key (user_order_id) references user_orders (user_order_id)
 	);
-/*
-create table user_ordered_books
-	(
-	 book_checkouts_id				int NOT NULL,
-	 user_order_id					int NOT NULL,
-	 primary key (book_checkouts_id, user_order_id),
-	 foreign key (book_checkouts_id) references book_checkouts (book_checkouts_id),
-	 foreign key (user_order_id) references user_orders (user_order_id)
-	);
-*/
-/* Create Publishers because Books reference Publishers */
-
 
 insert into publishers (publisher_name) values ('Book Works');
 insert into bank_accounts (publisher_id,account_balance) values ('1','0.0');

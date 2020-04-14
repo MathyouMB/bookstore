@@ -2,6 +2,8 @@
 
 ## Overview
 
+The following project is my final assignment for Carleton's COMP3005: Database Management Systems course. For my implementation I decided to create a web based application using a React client , Golang REST API, and PostgreSQL relational database. Additionally for easy deployment and setup I dockerized the application and created a docker-compose config.
+
 ## Prompt
 
 Design and implement an application for an online bookstore (Look Inna Book). This application lets users
@@ -23,6 +25,11 @@ vs. expenditures, sales per genres, sales per author, etc.. The application shou
 place orders for new books if the remaining quantity is less than a given threshold (e.g., 10 books). This is done
 by sending an email to the publisher of the limited books to order a number of books equal to how many books
 were sold in the previous month (you do not have to implement the email sending component).
+
+## Setup
+```
+docker-compose up
+```
 
 ## Schema
 

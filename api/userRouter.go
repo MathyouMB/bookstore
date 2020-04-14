@@ -58,8 +58,6 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	
-	
 	_, err := db.Exec(`INSERT INTO users (username, first_name, last_name, billing_address, credit_card_num, credit_card_cvs, email_address, password, role) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`, user.Username, user.First_name, user.Last_name, user.Billing_address, user.Credit_card_number, user.Credit_card_cvs, user.Email_address, user.Password, user.Role)
 	if err != nil {
 		fmt.Println(err)
