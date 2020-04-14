@@ -1,11 +1,16 @@
 # 📚 COMP3005 - Bookstore Project
 
-<img src="./docs/screenshots/15-reportsview.png">
-<img src="./docs/screenshots/06-defaultuserview.png">
-
 ## Overview
 
 The following project is my final assignment for Carleton's COMP3005: Database Management Systems course. For my implementation I decided to create a web based application using a React client , Golang REST API, and PostgreSQL relational database. Additionally for easy deployment and setup I dockerized the application and created a docker-compose config.
+
+## Default View
+
+<img src="./docs/screenshots/06-defaultuserview.png">
+
+## Admin View
+
+<img src="./docs/screenshots/15-reportsview.png">
 
 ## Assignment Prompt
 
