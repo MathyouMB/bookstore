@@ -4,14 +4,11 @@
 
 The following project is my final assignment for Carleton's COMP3005: Database Management Systems course. For my implementation I decided to create a web based application using a React client , Golang REST API, and PostgreSQL relational database. Additionally for easy deployment and setup I dockerized the application and created a docker-compose config.
 
-## Default View
+## Screenshots
 
 <img src="./docs/screenshots/06-defaultuserview.png">
-<img src="./docs/screenshots/12-ordertrackview.png">
-
-## Admin View
-
 <img src="./docs/screenshots/15-reportsview.png">
+<img src="./docs/screenshots/12-ordertrackview.png">
 <img src="./docs/screenshots/13-inventoryview.png">
 
 ## Assignment Prompt
