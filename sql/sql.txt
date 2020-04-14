@@ -1,4 +1,0 @@
-Book 
-
-SELECT * FROM book
-SELECT * FROM book WHERE book_id = {id}

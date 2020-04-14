@@ -193,7 +193,7 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 func queryPublisher(w http.ResponseWriter, id int, p *Publisher, wg *sync.WaitGroup){
 	
 	defer wg.Done()
-	book_publisher, err := db.Query(`SELECT * FROM publishers WHERE publisher_id = $1`, id)
+	book_publisher, err := db.Query(`SELECT publisher_id, publisher_name FROM publishers WHERE publisher_id = $1`, id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
