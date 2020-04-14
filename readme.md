@@ -13,7 +13,7 @@ The following project is my final assignment for Carleton's COMP3005: Database M
 
 ## Assignment Prompt
 
-Design and implement an application for an online bookstore (Look Inna Book). This application lets users
+Design and implement an application for an online bookstore. This application lets users
 browse a collection of books that are available in the bookstore. A user can search the bookstore by book
 name, author name, ISBN, genre, etc.. When a book is selected, information on the author(s), genre, publisher,
 number of pages, price, etc. can be viewed. A user can select as many books as she likes to be added to
