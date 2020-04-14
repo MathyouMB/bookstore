@@ -4,7 +4,7 @@
 
 The following project is my final assignment for Carleton's COMP3005: Database Management Systems course. For my implementation I decided to create a web based application using a React client , Golang REST API, and PostgreSQL relational database. Additionally for easy deployment and setup I dockerized the application and created a docker-compose config.
 
-## Prompt
+## Assignment Prompt
 
 Design and implement an application for an online bookstore (Look Inna Book). This application lets users
 browse a collection of books that are available in the bookstore. A user can search the bookstore by book
