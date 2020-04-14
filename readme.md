@@ -7,6 +7,7 @@ The following project is my final assignment for Carleton's COMP3005: Database M
 ## Default View
 
 <img src="./docs/screenshots/06-defaultuserview.png">
+<img src="./docs/screenshots/12-ordertrackview.png">
 
 ## Admin View
 
