@@ -1,6 +1,7 @@
 # 📚 COMP3005 - Bookstore Project
 
 <img src="./docs/screenshots/15-reportsview.png">
+<img src="./docs/screenshots/06-defaultuserview.png">
 
 ## Overview
 
